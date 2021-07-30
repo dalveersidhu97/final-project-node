@@ -1,0 +1,27 @@
+
+<% layout('../layout') -%>
+
+<div class="mt-5 mb-5 d-flex justify-content-center">
+    <form class="col-4 card p-4" method="post" action="/user/login">
+        <h2 class="text-center">Login</h2>
+        <div class="mb-3 form-group ">
+            <label for="email" class="form-label">Email address</label>
+            <input class="form-control input-lg" type="text" name="email" id="email" placeholder="Enter email address"/>
+        </div>
+        <div class="mb-3 form-group">
+            <label for="password" class="form-label">Password</label>
+            <input class="form-control input-lg" id="password" type="password" name="password" placeholder="Enter password"/>
+        </div>
+        <div class="mb-3 form-group form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Keep me logged in</label>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Login">
+        <div class="mt-4">
+            <% if(errorMessage!=undefined) {%>
+                <p class="text-center text-danger"><%=errorMessage%></p>
+            <%}%>
+            <p class="text-center text-info">Not registered?  &nbsp;<a class="btn-link" href="/user/register">Sign Up</a></p>
+        </div>
+    </form>
+</div>

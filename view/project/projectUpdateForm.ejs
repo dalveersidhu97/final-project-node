@@ -1,0 +1,45 @@
+<% layout('../layout') -%>
+
+
+
+<div class="mt-5 mb-5">
+    
+    <form class="card col-md-5 p-4 ms-auto me-auto" action="/project/<%=project._id%>/update" method="post">
+        <h2 class="text-center mb-3"><%=title%></h2>
+        <div class="mb-3">
+            <label class="form-label">Project title</label>
+            <input class="form-control" type="text" name="title" placeholder="Enter project title" value="<%=project.title%>"/>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Project description</label>
+            <textarea class="form-control" type="text" name="description" placeholder="Enter project description"><%=project.description%></textarea>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="dueDate">Due date</label>
+            <input class="form-control" type="date" name="dueDate" value="<%=project.dueDate.getFullYear()+'-'+('0'+(project.dueDate.getMonth()+1)).slice(-2)+'-'+('0'+(project.dueDate.getDate()+1)).slice(-2)%>"/> <br>
+            
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="members">select memebers</label>
+            <select class="form-control form-select" name="members" id="members" multiple>
+                <% users.forEach(user => {
+                    let selected  = '';
+                    project.members.forEach(member=>{
+                        if(member.id==user.id) selected = 'selected'
+                    })%>
+                    <option <%= selected %> value="<%=user._id%>"><%=user.name+' ('+user.email+')'%></option>
+                <%})%>
+            </select>
+        </div>
+
+        <input type="submit" class="btn btn-success" value="Update project"/>
+
+        <div class="mt-4">
+            <% if(errorMessage!=undefined) {%>
+                <p class="text-center text-danger"><%=errorMessage%></p>
+            <%}%>
+        </div>
+
+    </form>
+
+    </div>

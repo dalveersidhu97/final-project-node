@@ -1,0 +1,96 @@
+<% layout('../layout.ejs') -%>
+
+<div class="row container">
+    <% if(!project){%>
+        <h3 class="text-center mb-5 mt-3 rounded">No project</h3>
+    <%}else{%>
+
+        <div class="text-center col card m-2 p-2">
+            <h3 class="text-center mb-3 mt-3 rounded"><%=project.title%></h3>
+            <p>Description: <%= project.description %></p>
+            <p>Started on: <%= (project.startDate.getDate()+1)+'/'+project.startDate.getMonth()+'/'+project.startDate.getFullYear() %> </p>
+
+            <%
+                let due = parseInt((project.dueDate.getTime()-(new Date()).getTime())/(1000*60*60*24));
+                if(due == 0) due = 'Due today';
+                else if(due<0){ 
+                    due = (project.progress=='100%')?'Completed '+Math.abs(due)+' day(s) ago':'Over due by ' + Math.abs(due) + ' day(s)';
+                }
+                else due = 'Due in '+ due + 'day(s)';
+            %>
+
+            <p><%=due%> </p>
+            
+            <div class="col-8 mb-3" style="margin: 0 auto;">
+                <div class="progress" style="height: 20px;">
+                    <div class="progress-bar" role="progressbar" style='width:<%= project.progress %>' aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+            
+            <p>Progress: <%= project.progress %> complete</p>
+
+            <%if(role!='user'){%>
+                <ul class="nav nav-pills justify-content-center mb-3">
+                    <li class="nav-item m-1">
+                        <a class="btn btn-success" href="/project/<%=project._id%>/task/insert">Create task</a>
+                    </li>
+                    <li class="nav-item m-1">
+                        <a class="btn btn-primary" href="/project/<%=project._id%>/update">Update project</a>
+                    </li>
+
+                    <li class="nav-item m-1">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                            Delete project
+                        </button>
+                        
+                        <!-- Modal -->
+                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">Do you want to delete this project?</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <h4><%=project.title%></h4>
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <a class="nav-link bg-danger active" href="/project/<%=project._id%>/delete">Delete project</a>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            <%}%>
+
+        </div>
+
+        <%if(role!='user'){%>
+            <div class="m-2 col-md-4">
+                <div class="card">
+                <div class="card-header bg-warning mb-2"> <h4 class="text-center m-0 p-1 text-white">Members</h4></div>
+               
+                <% if(project.members && project.members.length > 0){%>
+
+                    <ul class="list-group list-unstyled p-3">
+                        
+                    <% project.members.forEach( (member, index) => {%>
+        
+                        <li class="unstyled-list pb-3 ps-3 "><b><%=index+1 %>) <%=member.name %> (<%=member.email %>)</b></li>
+        
+                <%});%>
+                    </ul>
+                <%}%>
+                </div>
+            </div>
+        <%}%>
+
+
+            <%- include ../task/viewUserTasks %>
+
+    <%}%>
+</div>

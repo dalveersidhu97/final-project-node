@@ -1,0 +1,31 @@
+
+<% layout('../layout') -%>
+
+<div class="mt-5 mb-5 d-flex justify-content-center">
+    <form class="col-4 card p-4" method="post" action="/user/register">
+        <h2 class="text-center">Register</h2>
+
+        <div class="mb-3">
+            <label for="name" class="form-label">Your name</label>
+            <input class="form-control" type="text" name="name" id="name" placeholder="Enter your name"/>
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input class="form-control" type="text" name="email" id="email" placeholder="Enter email address"/>
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Choose assword</label>
+            <input class="form-control" id="password" type="password" name="password" placeholder="Enter password"/>
+        </div>
+
+        <input type="submit" class="btn btn-primary" value="Register">
+        <div class="mt-4">
+            <% if(errorMessage!=undefined) {%>
+                <p class="text-center text-danger"><%=errorMessage%></p>
+            <%}%>
+            <p class="text-center text-info">Already registered? &nbsp;<a class="btn-link" href="/user/login">Login</a></p>
+        </div>
+    </form>
+</div>

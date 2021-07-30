@@ -1,0 +1,47 @@
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4 rounded-bottom">
+    <div class="container-fluid">
+        <h1 class="navbar-brand m-3">Project Management</h1>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+        </div>
+
+        <%if(!user){}else{%>
+
+            <button type="button" class="btn btn-primary active position-relative">
+                <%=user.name%>
+                <%-(user.role=="admin")?" - Admin":""%>
+            </button>
+
+            <a class="btn btn-danger m-3" href="/user/logout">Logout</a>
+        <%}%>
+    </div>
+</nav>
+    <div class="container mb-3">
+    <%if(!user){}else{%>
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/projects">Projects</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/projects/incomplete-projects">Incomplete projects</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/projects/completed-projects">Completed projects</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/tasks">Tasks</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/tasks/incomplete-tasks">Incomplete tasks</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/tasks/complete-tasks">Complete tasks</a>
+            </li>
+            <%-(user.role!='user')?
+                '<li class="nav-item"><a class="nav-link" href="/project/insert">Create project</a></li>':''
+            %>
+        </ul>
+    <%}%>
+    </div>
+ 

@@ -1,0 +1,40 @@
+<div class="col-sm-4 mb-4">
+    <div class="card">
+        <div class="card-header bg-info text-light"><h5 class="card-title m-0 p-1 text-truncate"><%= task.title %></h5></div>
+        <div class="card-body">
+        
+            <%
+                let due = parseInt((task.dueDate.getTime()-(new Date()).getTime())/(1000*60*60*24));
+                if(due == 0) due = 'Due today';
+                else if(due<0){
+                    due = (project.progress=='100%')?'Completed '+Math.abs(due)+' day(s) ago':'Over due by ' + Math.abs(due) + ' day(s)';
+                }
+                else due = 'Due in '+ due + 'day(s)';
+            %>
+    
+            <p class="card-text"><%=due%></p>
+            <p class="card-text text-truncate">Description: <%=task.description%></p>
+
+            <%if(user.role!='user'){%>
+                <p class="card-text mb-1">Assigned to <%=task.user.name%></p>
+            <%}%>
+
+            <p class="card-text">
+                <%if(task.status=='incomplete'){ if(user.role != 'user'){%>
+                    <span class="btn btn-link disabled ps-0">Incomplete</span> 
+                    <%}else{%>
+                    <%-`<a class="btn btn-link ps-0" href="/project/${project._id}/task/${task._id}/complete">Mark as completed</a>`%>
+                <%}}else{%>
+                    <span class="btn btn-link disabled ps-0">Completed</span> 
+                <%}%>
+
+                <%if(user.role != 'user'){%>
+                    <%-`<a class="btn btn-link ps-0" href="/project/${project._id}/task/${task._id}/update">Edit task</a>`%>
+                <%}%>
+
+                <%-`<a class="btn btn-link ps-0" href="/project/${project._id}/task/${task._id}">See task details</a>`%>
+            </p>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<% layout('../layout') -%>
+
+<div class="mt-3 mb-5">
+    <form class="card col-md-5 p-4 ms-auto me-auto" action="/project/insert" method="post">
+        <h3 class="text-center mb-5 rounded"><%=title%></h3>
+        <div class="mb-3">
+            <label class="form-label">Project title</label>
+            <input class="form-control" type="text" name="title" placeholder="Enter project title"/>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Project description</label>
+            <textarea class="form-control" type="text" name="description" placeholder="Enter project description"></textarea>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="dueDate">Due date</label>
+            <input class="form-control" type="date" name="dueDate"/>
+            
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="members">select memebers</label>
+            <select class="form-control form-select" name="members" id="members" multiple>
+                <% users.forEach(user => {%>
+                    <option value="<%=user._id%>"><%=user.name+' ('+user.email+')'%></option>
+                <%})%>
+            </select>
+        </div>
+
+        <input type="submit" class="btn btn-success" value="Create project"/>
+
+        <div class="mt-4">
+            <% if(errorMessage!=undefined) {%>
+                <p class="text-center text-danger"><%=errorMessage%></p>
+            <%}%>
+        </div>
+
+    </form>
+    
+    </div>

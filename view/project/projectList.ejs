@@ -1,0 +1,12 @@
+<% layout('../layout') -%>
+
+<div class="row container">
+    <h3 class="text-center mb-5 mt-3 rounded"><%=title%></h3>
+    <% for(let i=0;i<projects.length;i++){ 
+        let project = projects[i];    
+    %>
+    
+            <%- include projectCard %>
+
+        <% } %>
+    </div>

@@ -1,0 +1,24 @@
+
+   <h3>Project tasks</h3>
+
+<% project.tasks.forEach(function(task, index){ 
+    let taskUserName = (!task.user || !task.user.name)?'':`(${task.user.name}) (${task.status})`;    
+%>
+    
+    <p><b><%=index+1%>) <%=task.title%></b> <%-taskUserName%> <%-`<a href="/project/${project._id}/task/${task._id}/update">Edit task</a>`%>
+    
+    <%
+        let due = '';
+        if(task.dueDate != undefined){
+            due = parseInt((task.dueDate.getTime()-(new Date()).getTime())/(1000*60*60*24));
+            if(due == 0) due = 'Due today';
+            else if(due<0) due = 'Over due by ' + due + ' day(s)';
+            else due = 'Due in '+ due + 'day(s)';
+        }
+    %>
+
+    <%=due%>
+
+    </p>
+
+<% }); %>

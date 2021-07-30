@@ -1,0 +1,9 @@
+
+<%if(project.tasks.length==0){%>
+    <h3 class="m-3 text-center">No task</h3>
+<%}else{%>
+    <h3 class="m-3">Project tasks</h3>
+<%}%>
+<% project.tasks.forEach(function(task, index){  %>
+    <%- include taskCard%>
+<% }); %>

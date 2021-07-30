@@ -1,0 +1,11 @@
+<% layout('../layout') -%>
+
+<div class="row container">
+    <h3 class="text-center mb-5 mt-3 rounded"><%=title%></h3>
+        
+        <% tasks.forEach(function(task, index){  
+            const project =  task.project;    
+        %>
+            <%- include taskCard%>
+        <% }); %>
+</div>

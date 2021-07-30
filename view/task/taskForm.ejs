@@ -1,0 +1,44 @@
+
+<% layout('../layout') -%>
+
+
+
+<div class="mt-5 mb-5 d-flex justify-content-center">
+
+    <form class="col-md-5 card p-4" action="/project/<%=project._id%>/task/insert" method="post">
+        
+        <h2 class="text-center"><%=title%></h2>
+
+        <div class="mb-3">
+            <input type="hidden" value="<%=project._id%>", name="project"/>
+            <label>Task title</label>
+            <input class="form-control" type="text" name="title" placeholder="Enter task title"/>
+        </div>
+        <div class="mb-3">
+            <label>Task description</label>
+            <textarea class="form-control" type="text" name="description" placeholder="Enter task description"></textarea>
+        </div>
+        <div class="mb-3">
+            <label>Due date</label>
+            <input class="form-control" type="date" name="dueDate"/>
+        </div>
+        <div class="mb-3">
+            <label for="members">assign memeber</label>
+            <select class="form-control form-select" name="user" id="user">
+                <option value="">- select member</option>
+                <% project.members.forEach(member => {%>
+                    <option value="<%= member._id %>"><%=member.name%></option>
+                <%})%>
+            </select>
+        </div>
+        <input class="btn btn-primary" type="submit" value="Create task"/>
+
+        <div class="mt-4">
+            <% if(errorMessage!=undefined) {%>
+                <p class="text-center text-danger"><%=errorMessage%></p>
+            <%}%>
+        </div>
+
+    </form>
+
+</div>

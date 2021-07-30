@@ -1,0 +1,12 @@
+<% if(!user){%>
+    <p>
+        <a href="/user/logout">Logout</a>
+    </p>
+<% }else{%>
+    <p>
+        <a href="/">Home</a>
+        <%if(user.role!='user'){%>
+            <a href="/project/insert">Add project</a>
+        <%}%>
+    </p>
+<% }%>
