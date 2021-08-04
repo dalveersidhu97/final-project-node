@@ -36,6 +36,10 @@ app.use('/projects', projectRouter);
 app.use('/user', userRouter);
 app.use('/tasks', taskRouter);
 
+app.all('/', (req, res)=>{
+    res.redirect('/projects');
+})
+
 // ERROR HANDELER
 app.use((err, req, res, next) =>{
     console.log(err);
