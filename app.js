@@ -24,7 +24,7 @@ app.set("view engine", 'ejs');
 app.engine('ejs', require('ejs-locals'));
 
 // CONNECTING TO DATABASE
-mongoose.connect('mongodb://localhost:27017/school',{useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect('mongodb+srv://dalveersidhu97:3q5vThotLgTVhePS@cluster0.v2aom.mongodb.net/ProjectsDB?retryWrites=true&w=majority',{useNewUrlParser: true, useUnifiedTopology: true});
     const db =mongoose.connection;
     db.on('error',console.error.bind(console,'Connection error'));
     db.once('open',function(){

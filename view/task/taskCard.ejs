@@ -23,7 +23,9 @@
                 <%if(task.status=='incomplete'){ if(user.role != 'user'){%>
                     <span class="btn btn-link disabled ps-0">Incomplete</span> 
                     <%}else{%>
-                    <%-`<a class="btn btn-link ps-0" href="/project/${project._id}/task/${task._id}/complete">Mark as completed</a>`%>
+
+                        <%-`<a class="btn btn-link ps-0" href="/project/${project._id}/task/${task._id}/complete">Mark as Completed</a>`%>
+                    
                 <%}}else{%>
                     <span class="btn btn-link disabled ps-0">Completed</span> 
                 <%}%>
