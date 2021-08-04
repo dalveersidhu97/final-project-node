@@ -31,7 +31,29 @@
                     </li>
                 <%}else{%>
                     <li class="nav-item m-1">
-                        <%-`<a class="btn btn-primary" href="/project/${project._id}/task/${task._id}/update">Mark as completed</a>`%>
+                         <!-- Button trigger modal -->
+                         <button type="button btn-primary" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                            Mark as completed
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">Have you completed the task?</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <h4><%=task.title%></h4>
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                    <%-`<a class="btn btn-primary" href="/project/${project._id}/task/${task._id}/complete">Yes</a>`%>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+
                     </li>
                 <%}%>
                 </ul>
