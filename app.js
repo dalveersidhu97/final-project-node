@@ -9,6 +9,9 @@ const app = express();
 //COOKIE PARSER
 app.use(cookieParser());
  
+// STATIC FILES
+app.use('/favicon', express.static(path.join(__dirname, 'favicon')))
+
 // BODY PARSER
 app.use(express.json());
 app.use(express.urlencoded({extended: true}))
