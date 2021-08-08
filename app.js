@@ -1,6 +1,5 @@
 
 const express = require('express');
-const mongoose = require('mongoose');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 
@@ -20,14 +19,6 @@ app.use(express.urlencoded({extended: true}))
 app.set("views", path.join(__dirname, 'view'));
 app.set("view engine", 'ejs');
 app.engine('ejs', require('ejs-locals'));
-
-// CONNECTING TO DATABASE
-mongoose.connect('mongodb+srv://dalveersidhu97:3q5vThotLgTVhePS@cluster0.v2aom.mongodb.net/ProjectsDB?retryWrites=true&w=majority',{useNewUrlParser: true, useUnifiedTopology: true});
-    const db =mongoose.connection;
-    db.on('error',console.error.bind(console,'Connection error'));
-    db.once('open',function(){
-    console.log("we are connected on mongoose");
-});
 
 // ROUTERS
 const projectRouter = require('./routers/projectRoutes');
@@ -49,5 +40,4 @@ app.use((err, req, res, next) =>{
     return res.send(err.message);
 });
 
-// SERVER
-app.listen('80');
+module.exports = app;
