@@ -21,14 +21,10 @@ app.set("view engine", 'ejs');
 app.engine('ejs', require('ejs-locals'));
 
 // ROUTERS
-const projectRouter = require('./routers/projectRoutes');
-const taskRouter = require('./routers/taskRoutes');
-const userRouter = require('./routers/userRoutes');
-
-app.use('/project', projectRouter);
-app.use('/projects', projectRouter);
-app.use('/user', userRouter);
-app.use('/tasks', taskRouter);
+app.use('/project', require('./routers/projectRoutes'));
+app.use('/projects', require('./routers/projectRoutes'));
+app.use('/user', require('./routers/userRoutes'));
+app.use('/tasks', require('./routers/taskRoutes'));
 
 app.all('/', (req, res)=>{
     res.redirect('/projects');
