@@ -26,7 +26,7 @@ app.use('/projects', require('./routers/projectRoutes'));
 app.use('/user', require('./routers/userRoutes'));
 app.use('/tasks', require('./routers/taskRoutes'));
 
-app.all('/', (req, res)=>{
+app.all('*', (req, res)=>{
     res.redirect('/projects');
 })
 
