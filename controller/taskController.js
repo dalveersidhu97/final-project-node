@@ -37,7 +37,6 @@ exports.insertTask = async (req, res) => {
     
     if(!req.body.user || req.body.user.trim() == '')
         delete req.body.user;
-    console.log(req.body);
     // insert task
     Task.create(req.body).then(task=> {
 
@@ -95,7 +94,6 @@ exports.getProjectTask = async (req, res) => {
     
     const task = await Task.findById(req.params.taskId).populate('user');
     const project = await Project.findById(req.params.projectId).populate('members');
-    console.log("hererer herhehehrhe");
     res.render("task/taskDetail", {title: "Task detail", 'errorMessage':undefined, project, task, "user": req.user});
 }
 

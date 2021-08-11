@@ -31,7 +31,6 @@ exports.getAllProjects = catchAsync(async (req,res)=>{
     }
 
     for(let i=0;i<projects.length;i++){
-        console.log(await getProjectProgress(projects[i]._id)+"%");
         projects[i].progress = await getProjectProgress(projects[i]._id)+"%";
         projects[i].tasks = await Task.find({"project": mongoose.Types.ObjectId(projects[i]._id)});
     }
@@ -132,6 +131,5 @@ async function getProjectProgress(projectId){
         if(task.status == 'completed')
             completedTasks = completedTasks + 1;
     });
-    console.log(completedTasks / project.tasks.length * 100);
     return parseInt(completedTasks / project.tasks.length * 100);
 }
