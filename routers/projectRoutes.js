@@ -18,13 +18,13 @@ projectRouter
     .get('/completed-projects', projectController.filterCompleteProjects, projectController.getAllProjects)
     .get('/incomplete-projects', projectController.filterInompleteProjects, projectController.getAllProjects)
      // for /project
-    .get('/insert', projectController.projectInsertForm)
+    .get('/insert', userController.adminOnly, projectController.projectInsertForm)
     .get('/:projectId', projectController.getProject)
-    .get('/:projectId/update', projectController.projectUpdateForm)
-    .post('/:projectId/update', projectController.updateProject)
-    .post('/insert', projectController.insertProject)
-    .delete('/:projectId', projectController.deleteProject)
-    .get('/:projectId/delete', projectController.deleteProject);
+    .get('/:projectId/update', userController.adminOnly, projectController.projectUpdateForm)
+    .post('/:projectId/update', userController.adminOnly, projectController.updateProject)
+    .post('/insert', userController.adminOnly, projectController.insertProject)
+    .delete('/:projectId', userController.adminOnly, projectController.deleteProject)
+    .get('/:projectId/delete', userController.adminOnly, projectController.deleteProject);
 
 projectRouter.use('/:projectId/task', taskRouter);
 

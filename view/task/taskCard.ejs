@@ -4,7 +4,7 @@
         <div class="card-body">
         
             <%
-                let due = parseInt((task.dueDate.getTime()-(new Date()).getTime())/(1000*60*60*24));
+                let due = parseInt((task.dueDate.getTime()-(new Date()).getTime())/(1000*60*60*24))+1;
                 if(due == 0) due = 'Due today';
                 else if(due<0){
                     due = (project.progress=='100%')?'Completed '+Math.abs(due)+' day(s) ago':'Over due by ' + Math.abs(due) + ' day(s)';

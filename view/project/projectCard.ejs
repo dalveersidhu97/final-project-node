@@ -6,7 +6,7 @@
             <p class="card-text">Started on: <%= (project.startDate.getDate()+1)+'/'+project.startDate.getMonth()+'/'+project.startDate.getFullYear() %></p>
 
             <%
-                let due = parseInt((project.dueDate.getTime()-(new Date()).getTime())/(1000*60*60*24));
+                let due = parseInt((project.dueDate.getTime()-(new Date()).getTime())/(1000*60*60*24))+1;
                 if(due == 0) due = 'Due today';
                 else if(due<0) due = (project.progress=='100%')?'Completed '+Math.abs(due)+' day(s) ago':'Over due by ' + Math.abs(due) + ' day(s)';
                 else due = 'Due in '+ due + 'day(s)';

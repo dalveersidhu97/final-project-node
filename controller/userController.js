@@ -60,3 +60,13 @@ exports.isLoggedIn = catchAsync(async (req, res, next) => {
     req.user = user;
     next();
 });
+
+
+exports.adminOnly = catchAsync(async (req, res, next) => {
+   
+    if(req.user.role != 'admin')
+        return res.redirect('/user/login');
+        
+    next();
+
+});
