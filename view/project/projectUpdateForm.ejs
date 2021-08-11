@@ -15,7 +15,7 @@
         </div>
         <div class="mb-3">
             <label class="form-label" for="dueDate">Due date</label>
-            <input class="form-control" type="date" name="dueDate" value="<%=project.dueDate.getFullYear()+'-'+('0'+(project.dueDate.getMonth()+1)).slice(-2)+'-'+('0'+(project.dueDate.getDate()+1)).slice(-2)%>"/> <br>
+            <input class="form-control" type="date" name="dueDate" min="<%=new Date().getFullYear()+'-'+('0'+(new Date().getMonth()+1)).slice(-2)+'-'+('0'+(new Date().getDate()+1)).slice(-2)%>" value="<%=project.dueDate.getFullYear()+'-'+('0'+(project.dueDate.getMonth()+1)).slice(-2)+'-'+('0'+(project.dueDate.getDate()+1)).slice(-2)%>"/> <br>
             
         </div>
         <div class="mb-3">

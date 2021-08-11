@@ -20,7 +20,7 @@
         </div>
         <div class="mb-3">
             <label>Due date</label>
-            <input class="form-control" type="date" name="dueDate"  max="<%=project.dueDate.getFullYear()+'-'+('0'+(project.dueDate.getMonth()+1)).slice(-2)+'-'+('0'+(project.dueDate.getDate()+1)).slice(-2)%>"/>
+            <input class="form-control" type="date" name="dueDate" min="<%=new Date().getFullYear()+'-'+('0'+(new Date().getMonth()+1)).slice(-2)+'-'+('0'+(new Date().getDate())).slice(-2)%>"  max="<%=project.dueDate.getFullYear()+'-'+('0'+(project.dueDate.getMonth()+1)).slice(-2)+'-'+('0'+(project.dueDate.getDate()+1)).slice(-2)%>"/>
         </div>
         <div class="mb-3">
             <label for="members">assign memeber</label>

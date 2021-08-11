@@ -13,7 +13,7 @@
         </div>
         <div class="mb-3">
             <label class="form-label" for="dueDate">Due date</label>
-            <input class="form-control" type="date" name="dueDate"/>
+            <input class="form-control" type="date" name="dueDate"  min="<%=new Date().getFullYear()+'-'+('0'+(new Date().getMonth()+1)).slice(-2)+'-'+('0'+(new Date().getDate()+1)).slice(-2)%>" />
             
         </div>
         <div class="mb-3">
