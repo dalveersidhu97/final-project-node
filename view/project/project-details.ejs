@@ -13,8 +13,8 @@
             <%
                 let due = parseInt((project.dueDate.getTime()-(new Date()).getTime())/(1000*60*60));
                 if(due<0 && due>-24) due = 'Due today';
-                else if(due<-24) due = (project.progress=='100%')?'Completed '+Math.abs(due/24)+' day(s) ago':'Over due by ' + Math.abs(due/24) + ' day(s)';
-                else due = 'Due in '+ due/24 + 'day(s)';
+                else if(due<-24) due = (project.progress=='100%')?'Completed '+Math.abs(parseInt(due/24))+' day(s) ago':'Over due by ' + Math.abs(parseInt(due/24)) + ' day(s)';
+                else due = 'Due in '+ parseInt(due/24) + 'day(s)';
             %>
 
             <p><%=due%> </p>
