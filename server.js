@@ -11,7 +11,7 @@ mongoose.connect('mongodb+srv://dalveersidhu97:3q5vThotLgTVhePS@cluster0.v2aom.m
 });
 
 // PORT
-const PORT = process.env.PORT || 80;
+const PORT = process.env.PORT || 3000;
 
 // SERVER
 app.listen(PORT);
